@@ -1,0 +1,25 @@
+				//obs输出的代码
+				printf("%c%2d%14.3f  %14.3f  %14.3f  %14.3f  %14.3f  %14.3f  %14.3f  %14.3f\n",
+					obs.sys, obs.prn, obs.P[0], obs.L[0], obs.D[0], obs.SNR[0], obs.P[1], obs.L[1], obs.D[1], obs.SNR[1]);
+			
+			
+
+				printf("%c%2d%14.3f  %14.3f  %14.3f  %14.3f  %14.3f  %14.3f  %14.3f  %14.3f\n",
+					obs.sys, obs.prn, obs.P[0], obs.L[0], obs.D[0], obs.SNR[0], obs.P[1], obs.L[1], obs.D[1], obs.SNR[1]);
+				
+
+
+
+nav_t[SYSPRN][EPOCHNUM]   //SYSPRN GPS+BDS 所有卫星，EPoch，每小时一次或者？应该要记录有多少历元。标示该卫星星历是否有
+
+obs观测值每一行都是
+
+G12F14.3I2F14.3I2F14
+
+目前的想法是匹配完SYS / # / OBS TYPES substr（79,19）后
+然后查找find C1C等观测值，看他在第几个。
+一行可以容纳13个观测值
+
+4/29
+有的卫星星历是2点，4点，没有0点
+加之判断条件是小于3600s，导致观测值是0点的时候算不出来卫星位置
